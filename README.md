@@ -10,6 +10,11 @@ RxJS powered state management inspired by Redux for Angular 2 apps
 
 http://plnkr.co/edit/Hb4pJP3jGtOp6b7JubzS?p=preview
 
+### Introduction
+- [Comprehensive Introduction to @ngrx/store](https://gist.github.com/btroncone/a6e4347326749f938510)
+- [Reactive Angular 2 with ngrx (video)](https://youtu.be/mhA7zZ23Odw)
+- [@ngrx/store in 10 minutes (video)](https://egghead.io/lessons/angular-2-ngrx-store-in-10-minutes)
+
 ### Installation
 Make sure you have  @angular/core and @ngrx/core installed via npm:
 ```bash
@@ -23,7 +28,7 @@ npm install @ngrx/store --save
 
 ### Usage
 
-Create a reducer function for each data type you have:
+Create a reducer function for each data type you have in your application. The combination of these reducers will make up your application state:
 
 ```ts
 // counter.ts
@@ -64,7 +69,7 @@ bootstrap(App, [
 ]);
 ```
 
-You can then inject the `Store` service into your components and services:
+You can then inject the `Store` service into your components and services. The `store.select` method can be used to obtain the appropriate slice(s) of state from your application store:
 
 ```ts
 import { Store } from '@ngrx/store';
@@ -108,7 +113,7 @@ class MyApp {
 #### Middleware
 The middleware APIs have been removed. There are no plans to reintroduce these APIs and there is not a straightforward upgrade process if you rely on middleware.
 
-Some popular middleware libraries have already been upgraded. If you were using [store-saga](https://github.com/CodeSequence/store-saga), checkout [@ngrx/effects](https://github.com/ngrx/effects). If you were using [ngrx-store-logger](https://github.com/btroncone/ngrx-store-logger), it has been reimplemented using a meta reducer.
+Some popular middleware libraries have already been upgraded. If you were using [store-saga](https://github.com/CodeSequence/store-saga), checkout [@ngrx/effects](https://github.com/ngrx/effects). If you were using [ngrx-store-logger](https://github.com/btroncone/ngrx-store-logger), it has been reimplemented as a [meta reducer](https://gist.github.com/btroncone/a6e4347326749f938510#implementing-a-meta-reducer).
 
 #### getState(), getValue(), and value
 The APIs for synchronously pulling the most recent state value out of Store have been removed. Instead, you can _always_ rely on `subscribe()` running synchronously if you _have_ to get the state value:
